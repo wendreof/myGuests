@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MeusConvidados</string>
+    <string name="navigation_drawer_open">Abrir Menu</string>
+    <string name="navigation_drawer_close">Fechar Menu</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="configs">Configurações</string>
+    <string name="ausentes">Ausentes</string>
+    <string name="presentes">Presentes</string>
+    <string name="todos">Todos</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nome">Nome</string>
+    <string name="nao_confirmado">Não confirmado</string>
+    <string name="presente">Presente</string>
+    <string name="ausente">Ausente</string>
+    <string name="salvar">Salvar</string>
+</resources>
