@@ -12,6 +12,7 @@
         android:text="@string/nome"/>
     
     <EditText
+        android:id="@+id/edit_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -19,20 +20,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioButton
+            android:id="@+id/radio_not_confirmed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/nao_confirmado"/>
         <RadioButton
+            android:id="@+id/radio_present"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/presente"/>
         <RadioButton
+            android:id="@+id/radio_absent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/ausente"/>
     </RadioGroup>
 
     <Button
+        android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/salvar"/>

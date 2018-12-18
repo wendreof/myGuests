@@ -14,13 +14,13 @@ public class  GuestDatabaseHelper extends SQLiteOpenHelper
     private static final String SQL_CREATE_TABLE_GUEST =
 
         "create table " + DatabaseContants.GUEST.TABLE_NAME + " ("
-        + DatabaseContants.GUEST.COLUMNS.ID       + " integer primary key autoincrement, "
+        + DatabaseContants.GUEST.COLUMNS.ID       + "integer primary key autoincrement, "
         + DatabaseContants.GUEST.COLUMNS.NAME     + "text, "
         + DatabaseContants.GUEST.COLUMNS.PRESENCE + "integer);";
 
     public GuestDatabaseHelper( Context context )
     {
-        super( context,this.DATABASE_NAME , null, this.DATABASE_VERSION  );
+        super( context, DATABASE_NAME , null, DATABASE_VERSION  );
     }
 
     private static final String DROP_TABLE_GUEST =
