@@ -1,4 +1,4 @@
-package com.example.wlf.meusconvidados;
+package com.example.wlf.meusconvidados.views;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

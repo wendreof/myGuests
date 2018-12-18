@@ -1,4 +1,4 @@
-package com.example.wlf.meusconvidados;
+package com.example.wlf.meusconvidados.views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
