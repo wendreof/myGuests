@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.wlf.meusconvidados.R;
+import com.example.wlf.meusconvidados.entities.GuestEntities;
 
 public class GuestViewHolder extends RecyclerView.ViewHolder
 {
@@ -16,5 +17,10 @@ public class GuestViewHolder extends RecyclerView.ViewHolder
         super( itemView );
 
         this.mTextName = itemView.findViewById( R.id.text_name );
+    }
+
+    public void bindData (GuestEntities guestEntities )
+    {
+        this.mTextName.setText( guestEntities.getName() );
     }
 }

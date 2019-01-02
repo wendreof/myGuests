@@ -11,10 +11,15 @@ import android.view.ViewGroup;
 
 import com.example.wlf.meusconvidados.R;
 import com.example.wlf.meusconvidados.adapter.GuestListAdapter;
+import com.example.wlf.meusconvidados.business.GuestBusiness;
+import com.example.wlf.meusconvidados.entities.GuestEntities;
+
+import java.util.List;
 
 public class AllInvitedFragment extends Fragment {
 
     private ViewHolder mViewHolder = new ViewHolder();
+    private GuestBusiness mGuestBusiness;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,8 +36,11 @@ public class AllInvitedFragment extends Fragment {
         // Get Recycler
         this.mViewHolder.mRecyclerAllInvited = view.findViewById( R.id.recycler_all_invited );
 
+        this.mGuestBusiness = new GuestBusiness( context );
+        List < GuestEntities > guestEntitiesList = this.mGuestBusiness.getInvited();
+
         //Define an adapter
-        GuestListAdapter guestListAdapter = new GuestListAdapter();
+        GuestListAdapter guestListAdapter = new GuestListAdapter( guestEntitiesList );
         this.mViewHolder.mRecyclerAllInvited.setAdapter( guestListAdapter );
 
         //Define a layout

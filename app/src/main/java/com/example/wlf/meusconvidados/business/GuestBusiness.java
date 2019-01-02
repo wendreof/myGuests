@@ -2,8 +2,11 @@ package com.example.wlf.meusconvidados.business;
 
 import android.content.Context;
 
+import com.example.wlf.meusconvidados.constants.DatabaseContants;
 import com.example.wlf.meusconvidados.entities.GuestEntities;
 import com.example.wlf.meusconvidados.repository.GuestRepository;
+
+import java.util.List;
 
 public class GuestBusiness
 {
@@ -17,5 +20,11 @@ public class GuestBusiness
     public Boolean insert( GuestEntities guestEntities )
     {
         return this.mGuestRepository.insert( guestEntities );
+    }
+
+    public List < GuestEntities > getInvited ()
+    {
+        return this.mGuestRepository
+                .getGuestsByQuery("select * from guest " + DatabaseContants.GUEST.TABLE_NAME );
     }
 }
