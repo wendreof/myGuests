@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.wlf.meusconvidados.R;
 import com.example.wlf.meusconvidados.business.GuestBusiness;
@@ -73,7 +74,14 @@ public class GuestFormActivity extends AppCompatActivity implements View.OnClick
         }
 
         //Save Entity Guest
-        this.mGuestBusiness.insert( guestEntities );
+        if ( this.mGuestBusiness.insert( guestEntities ) )
+        {
+            Toast.makeText( this, R.string.guest_saved_with_success, Toast.LENGTH_LONG ).show();
+        }
+        else
+        {
+            Toast.makeText( this, R.string.error_saving_guest, Toast.LENGTH_SHORT ).show();
+        }
 
         //Finish the Activity
         finish();
