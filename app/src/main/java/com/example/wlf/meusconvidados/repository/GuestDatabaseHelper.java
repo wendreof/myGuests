@@ -14,18 +14,16 @@ public class  GuestDatabaseHelper extends SQLiteOpenHelper
     private static final String SQL_CREATE_TABLE_GUEST =
 
         "create table " + DatabaseContants.GUEST.TABLE_NAME + " ("
-        + DatabaseContants.GUEST.COLUMNS.ID       + "integer primary key autoincrement, "
-        + DatabaseContants.GUEST.COLUMNS.NAME     + "text, "
-        + DatabaseContants.GUEST.COLUMNS.PRESENCE + "integer);";
+        + DatabaseContants.GUEST.COLUMNS.ID       + " integer primary key autoincrement, "
+        + DatabaseContants.GUEST.COLUMNS.NAME     + " text, "
+        + DatabaseContants.GUEST.COLUMNS.PRESENCE + " integer);";
+
+    private static final String DROP_TABLE_GUEST = "DROP TABLE IF EXISTS" + DatabaseContants.GUEST.TABLE_NAME;
 
     public GuestDatabaseHelper( Context context )
     {
         super( context, DATABASE_NAME , null, DATABASE_VERSION  );
     }
-
-    private static final String DROP_TABLE_GUEST =
-
-        "DROP TABLE IF EXISTS" + DatabaseContants.GUEST.TABLE_NAME;
 
     @Override
     public void onCreate( SQLiteDatabase db )

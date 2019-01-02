@@ -24,23 +24,18 @@ public class GuestFormActivity extends AppCompatActivity implements View.OnClick
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_guest_form);
 
-        this.mViewHolder.mEditName = this.findViewById( R.id.edit_name );
+        this.mViewHolder.mEditName          = this.findViewById( R.id.edit_name );
         this.mViewHolder.mRadioNotConfirmed = this.findViewById( R.id.radio_not_confirmed );
-        this.mViewHolder.mRadioPresent = this.findViewById( R.id.radio_present );
-        this.mViewHolder.mRadioAbsent = this.findViewById( R.id.radio_absent );
-        this.mViewHolder.mButtonSave = this.findViewById( R.id.button_save );
+        this.mViewHolder.mRadioPresent      = this.findViewById( R.id.radio_present );
+        this.mViewHolder.mRadioAbsent       = this.findViewById( R.id.radio_absent );
+        this.mViewHolder.mButtonSave        = this.findViewById( R.id.button_save );
 
         this.mGuestBusiness = new GuestBusiness( this );
         this.setListeners();
     }
 
-    private void setListeners() 
-    {
-        this.mViewHolder.mButtonSave.setOnClickListener( this );
-    }
-
     @Override
-    public void onClick(View v) 
+    public void onClick(View v)
     {
         if ( v.getId() == R.id.button_save )
         {
@@ -48,22 +43,29 @@ public class GuestFormActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    private void setListeners() 
+    {
+        this.mViewHolder.mButtonSave.setOnClickListener( this );
+    }
+
+
     private void handleSave()
     {
         GuestEntities guestEntities = new GuestEntities();
         guestEntities.setName( this.mViewHolder.mEditName.getText().toString() );
 
         if ( this.mViewHolder.mRadioNotConfirmed.isChecked() )
-
-            guestEntities.setConfirmed( GuestConstants.CONFIRMATION.NOT_CONFIRMED );
-
+        {
+            guestEntities.setConfirmed(GuestConstants.CONFIRMATION.NOT_CONFIRMED);
+        }
         else if ( this.mViewHolder.mRadioPresent.isChecked() )
-
+        {
             guestEntities.setConfirmed( GuestConstants.CONFIRMATION.PRESENT );
-
+        }
         else
-
+        {
             guestEntities.setConfirmed( GuestConstants.CONFIRMATION.ABSENT );
+        }
 
         //Save Entity Guest
         this.mGuestBusiness.insert( guestEntities );

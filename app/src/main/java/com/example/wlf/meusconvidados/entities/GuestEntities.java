@@ -2,7 +2,7 @@ package com.example.wlf.meusconvidados.entities;
 
 public class GuestEntities
 {
-    private  int id;
+    private int id;
     private String name;
     private int confirmed;
 

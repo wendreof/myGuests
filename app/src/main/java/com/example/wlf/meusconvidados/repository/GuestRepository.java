@@ -27,7 +27,7 @@ public class GuestRepository
         return INSTANCE;
     }
 
-    public Boolean insert(GuestEntities guestEntities)
+    public Boolean insert( GuestEntities guestEntities )
     {
         try
         {
@@ -43,6 +43,7 @@ public class GuestRepository
         }
         catch ( Exception e )
         {
+
             return false;
         }
     }
