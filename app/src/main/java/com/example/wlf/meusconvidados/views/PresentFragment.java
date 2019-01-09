@@ -23,6 +23,7 @@ public class PresentFragment extends Fragment {
 
     private ViewHolder mViewHolder = new ViewHolder();
     private GuestBusiness mGuestBusiness;
+    private OnGuestListenerInterectionListener mOnGuestListenerInterectionListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class PresentFragment extends Fragment {
 
         this.mGuestBusiness = new GuestBusiness( context );
 
-        OnGuestListenerInterectionListener listener = new OnGuestListenerInterectionListener()
+        mOnGuestListenerInterectionListener = new OnGuestListenerInterectionListener()
         {
             @Override
             public void onListClick( int id )
@@ -63,21 +64,31 @@ public class PresentFragment extends Fragment {
             }
         };
 
-        List< GuestEntities > guestEntitiesList = this.mGuestBusiness.getPresent();
-
-        //Define an adapter
-        GuestListAdapter guestListAdapter = new GuestListAdapter( guestEntitiesList, listener );
-        this.mViewHolder.mRecyclerAllPresent.setAdapter( guestListAdapter );
-
         //Define a layout
         this.mViewHolder.mRecyclerAllPresent.setLayoutManager( new LinearLayoutManager( context ) );
 
         return view;
     }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        this.loadGuests();
+    }
+
+    private void loadGuests()
+    {
+        List< GuestEntities > guestEntitiesList = this.mGuestBusiness.getPresent();
+
+        //Define an adapter
+        GuestListAdapter guestListAdapter = new GuestListAdapter( guestEntitiesList, mOnGuestListenerInterectionListener );
+        this.mViewHolder.mRecyclerAllPresent.setAdapter( guestListAdapter );
+        guestListAdapter.notifyDataSetChanged();
+    }
+
     private static class ViewHolder
     {
         RecyclerView mRecyclerAllPresent;
     }
-
 }
