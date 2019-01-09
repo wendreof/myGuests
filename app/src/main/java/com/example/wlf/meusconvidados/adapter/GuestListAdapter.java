@@ -32,7 +32,7 @@ public class GuestListAdapter extends RecyclerView.Adapter < GuestViewHolder >
         LayoutInflater layoutInflater = LayoutInflater.from( context );
         View guestView = layoutInflater.inflate( R.layout.row_guest_list, parent, false );
 
-        return new GuestViewHolder( guestView );
+        return new GuestViewHolder( guestView, context );
     }
 
     @Override

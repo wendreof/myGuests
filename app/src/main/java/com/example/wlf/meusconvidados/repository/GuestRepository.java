@@ -79,9 +79,26 @@ public class GuestRepository
         {
             return false;
         }
-
     }
 
+    public boolean remove( int id)
+    {
+        try
+        {
+            SQLiteDatabase sqLiteDatabase = this.mGuestDatabaseHelper.getWritableDatabase();
+
+            String whereClause = DatabaseContants.GUEST.COLUMNS.ID + " = ? " ;
+            String[] whereArgs = { String.valueOf(id)};
+
+            sqLiteDatabase.delete( DatabaseContants.GUEST.TABLE_NAME, whereClause, whereArgs);
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
 
     public GuestEntities load( int id )
     {

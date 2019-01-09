@@ -20,4 +20,5 @@
     <string name="nome_e_obrigatorio">Nome é obrigatório!</string>
     <string name="guest_saved_with_success">Convidado foi salvo com sucesso!</string>
     <string name="error_saving_guest">Ops! Erro ao salvar</string>
+    <string name="remocao_convidado">Remoção de Convidado</string>
 </resources>

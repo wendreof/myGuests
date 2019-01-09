@@ -28,6 +28,11 @@ public class GuestBusiness
         return this.mGuestRepository.update( guestEntities );
     }
 
+    public Boolean remove( int id )
+    {
+        return this.mGuestRepository.remove( id );
+    }
+
     public GuestEntities load( int id)
     {
         return this.mGuestRepository.load( id );
