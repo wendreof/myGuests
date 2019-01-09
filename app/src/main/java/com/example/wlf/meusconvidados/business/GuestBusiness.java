@@ -3,6 +3,7 @@ package com.example.wlf.meusconvidados.business;
 import android.content.Context;
 
 import com.example.wlf.meusconvidados.constants.DatabaseContants;
+import com.example.wlf.meusconvidados.constants.GuestConstants;
 import com.example.wlf.meusconvidados.entities.GuestEntities;
 import com.example.wlf.meusconvidados.repository.GuestRepository;
 
@@ -31,5 +32,22 @@ public class GuestBusiness
     {
         return this.mGuestRepository
                 .getGuestsByQuery("select * from guest " + DatabaseContants.GUEST.TABLE_NAME );
+    }
+
+    public List < GuestEntities > getAbsent ()
+    {
+        return this.mGuestRepository
+                .getGuestsByQuery( "select * from guest " + DatabaseContants.GUEST.TABLE_NAME
+                        + " where "
+                        + DatabaseContants.GUEST.COLUMNS.PRESENCE
+                        + " = " + GuestConstants.CONFIRMATION.ABSENT );    }
+
+    public List < GuestEntities > getPresent ()
+    {
+        return this.mGuestRepository
+                .getGuestsByQuery( "select * from guest " + DatabaseContants.GUEST.TABLE_NAME
+                + " where "
+                + DatabaseContants.GUEST.COLUMNS.PRESENCE
+                + " = " + GuestConstants.CONFIRMATION.PRESENT );
     }
 }
