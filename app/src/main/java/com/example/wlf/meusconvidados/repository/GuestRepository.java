@@ -53,6 +53,35 @@ public class GuestRepository
         }
     }
 
+    public Boolean update( GuestEntities guestEntities )
+    {
+        try
+        {
+            SQLiteDatabase sqLiteDatabase = this.mGuestDatabaseHelper.getWritableDatabase();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put( DatabaseContants.GUEST.COLUMNS.NAME, guestEntities.getName() );
+            contentValues.put( DatabaseContants.GUEST.COLUMNS.PRESENCE, guestEntities.getConfirmed() );
+
+            String selection = DatabaseContants.GUEST.COLUMNS.ID + " = ? ";
+            String[] selectionArgs = { String.valueOf( guestEntities.getId() ) };
+
+            sqLiteDatabase.update(
+                    DatabaseContants.GUEST.TABLE_NAME,
+                    contentValues,
+                    selection,
+                    selectionArgs
+                    );
+
+            return true;
+        }
+        catch( Exception e)
+        {
+            return false;
+        }
+
+    }
+
 
     public GuestEntities load( int id )
     {

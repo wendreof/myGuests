@@ -18,7 +18,7 @@ public class GuestFormActivity extends AppCompatActivity implements View.OnClick
 
     private ViewHolder mViewHolder = new ViewHolder();
     private GuestBusiness mGuestBusiness;
-    private int mGuestId;
+    private int mGuestId =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -77,14 +77,30 @@ public class GuestFormActivity extends AppCompatActivity implements View.OnClick
             guestEntities.setConfirmed( GuestConstants.CONFIRMATION.ABSENT );
         }
 
-        //Save Entity Guest
-        if ( this.mGuestBusiness.insert( guestEntities ) )
+        if ( this.mGuestId == 0)
         {
-            Toast.makeText( this, R.string.guest_saved_with_success, Toast.LENGTH_LONG ).show();
+            //Save Entity Guest
+
+            if ( this.mGuestBusiness.insert( guestEntities ) )
+            {
+                Toast.makeText( this, R.string.guest_saved_with_success, Toast.LENGTH_LONG ).show();
+            }
+            else
+            {
+                Toast.makeText( this, R.string.error_saving_guest, Toast.LENGTH_SHORT ).show();
+            }
         }
         else
         {
-            Toast.makeText( this, R.string.error_saving_guest, Toast.LENGTH_SHORT ).show();
+            guestEntities.setId( this.mGuestId );
+            if ( this.mGuestBusiness.update( guestEntities ) )
+            {
+                Toast.makeText( this, R.string.guest_saved_with_success, Toast.LENGTH_LONG ).show();
+            }
+            else
+            {
+                Toast.makeText( this, R.string.error_saving_guest, Toast.LENGTH_SHORT ).show();
+            }
         }
 
         //Finish the Activity
@@ -96,7 +112,7 @@ public class GuestFormActivity extends AppCompatActivity implements View.OnClick
         Bundle bundle = getIntent().getExtras();
         if ( bundle != null)
         {
-            mGuestId = bundle.getInt( GuestConstants.BundleConstants.GUEST_ID );
+            this.mGuestId = bundle.getInt( GuestConstants.BundleConstants.GUEST_ID );
 
             GuestEntities guestEntities = this.mGuestBusiness.load( this.mGuestId );
 

@@ -23,6 +23,11 @@ public class GuestBusiness
         return this.mGuestRepository.insert( guestEntities );
     }
 
+    public Boolean update( GuestEntities guestEntities )
+    {
+        return this.mGuestRepository.update( guestEntities );
+    }
+
     public GuestEntities load( int id)
     {
         return this.mGuestRepository.load( id );
