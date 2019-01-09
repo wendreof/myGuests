@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.wlf.meusconvidados.constants.DatabaseContants;
+import com.example.wlf.meusconvidados.constants.GuestConstants;
+import com.example.wlf.meusconvidados.entities.GuestCount;
 import com.example.wlf.meusconvidados.entities.GuestEntities;
 
 import java.sql.SQLData;
@@ -150,6 +152,64 @@ public class GuestRepository
         catch( Exception e )
         {
             return guestEntities;
+        }
+    }
+
+    public GuestCount loadDashboard()
+    {
+        GuestCount guestCount = new GuestCount(0, 0, 0);
+        Cursor cursor;
+
+        try
+        {
+            SQLiteDatabase sqLiteDatabase = this.mGuestDatabaseHelper.getReadableDatabase();
+
+            String queryPresence =
+                    "SELECT COUNT(*) FROM " + DatabaseContants.GUEST.TABLE_NAME
+                    + " WHERE "
+                    + DatabaseContants.GUEST.COLUMNS.PRESENCE
+                    + " = "
+                    + GuestConstants.CONFIRMATION.PRESENT;
+
+            cursor = sqLiteDatabase.rawQuery(queryPresence, null);
+
+            if ( cursor != null && cursor.getCount() > 0)
+            {
+                cursor.moveToFirst();
+                guestCount.setPresentCount( cursor.getInt(0));
+            }
+
+            String queryAbsent =
+                    "SELECT COUNT(*) FROM " + DatabaseContants.GUEST.TABLE_NAME
+                            + " WHERE "
+                            + DatabaseContants.GUEST.COLUMNS.PRESENCE
+                            + " = "
+                            + GuestConstants.CONFIRMATION.ABSENT;
+
+             cursor = sqLiteDatabase.rawQuery(queryAbsent, null);
+
+            if ( cursor != null && cursor.getCount() > 0)
+            {
+                cursor.moveToFirst();
+                guestCount.setAbsentCount( cursor.getInt(0));
+            }
+
+            String queryAllInvited =
+                    "SELECT COUNT(*) FROM " + DatabaseContants.GUEST.TABLE_NAME;
+
+            cursor = sqLiteDatabase.rawQuery(queryAllInvited, null);
+
+            if ( cursor != null && cursor.getCount() > 0)
+            {
+                cursor.moveToFirst();
+                guestCount.setAllInvited( cursor.getInt(0));
+            }
+
+            return guestCount;
+        }
+        catch (Exception e)
+        {
+            return guestCount;
         }
     }
 

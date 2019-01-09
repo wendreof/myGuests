@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.wlf.meusconvidados.constants.DatabaseContants;
 import com.example.wlf.meusconvidados.constants.GuestConstants;
+import com.example.wlf.meusconvidados.entities.GuestCount;
 import com.example.wlf.meusconvidados.entities.GuestEntities;
 import com.example.wlf.meusconvidados.repository.GuestRepository;
 
@@ -36,6 +37,11 @@ public class GuestBusiness
     public GuestEntities load( int id)
     {
         return this.mGuestRepository.load( id );
+    }
+
+    public GuestCount loadDashboard()
+    {
+        return this.mGuestRepository.loadDashboard();
     }
 
     public List < GuestEntities > getInvited ()
