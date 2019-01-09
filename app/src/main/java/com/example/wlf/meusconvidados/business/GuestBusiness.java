@@ -22,6 +22,11 @@ public class GuestBusiness
         return this.mGuestRepository.insert( guestEntities );
     }
 
+    public GuestEntities load( int id)
+    {
+        return this.mGuestRepository.load( id );
+    }
+
     public List < GuestEntities > getInvited ()
     {
         return this.mGuestRepository

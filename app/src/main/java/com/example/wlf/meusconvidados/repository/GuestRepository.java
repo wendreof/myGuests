@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.wlf.meusconvidados.constants.DatabaseContants;
 import com.example.wlf.meusconvidados.entities.GuestEntities;
 
+import java.sql.SQLData;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +50,60 @@ public class GuestRepository
         {
 
             return false;
+        }
+    }
+
+
+    public GuestEntities load( int id )
+    {
+        GuestEntities guestEntities = new GuestEntities();
+
+        try
+        {
+            SQLiteDatabase sqLiteDatabase = this.mGuestDatabaseHelper.getReadableDatabase();
+
+            String[] projection = {
+                    DatabaseContants.GUEST.COLUMNS.ID,
+                    DatabaseContants.GUEST.COLUMNS.NAME,
+                    DatabaseContants.GUEST.COLUMNS.PRESENCE,
+            };
+
+            String selection = DatabaseContants.GUEST.COLUMNS.ID + " = ?";
+            String[]  selectionArgs = {String.valueOf( id )};
+
+            Cursor cursor = sqLiteDatabase.query (
+                    DatabaseContants.GUEST.TABLE_NAME,
+                    projection,
+                    selection,
+                    selectionArgs,
+                    null,
+                    null,
+                    null
+            );
+
+            if ( cursor != null && cursor.getCount() > 0)
+            {
+                cursor.moveToFirst();
+                guestEntities.setId( cursor.getInt(
+                        cursor.getColumnIndex( DatabaseContants.GUEST.COLUMNS.ID ) ) );
+                // NAME
+                guestEntities.setName( cursor.getString(
+                        cursor.getColumnIndex( DatabaseContants.GUEST.COLUMNS.NAME ) ) );
+                //PRESENCE
+                guestEntities.setConfirmed( cursor.getInt(
+                        cursor.getColumnIndex( DatabaseContants.GUEST.COLUMNS.PRESENCE ) ) );
+            }
+
+            if ( cursor != null)
+            {
+                cursor.close();
+            }
+
+            return guestEntities;
+        }
+        catch( Exception e )
+        {
+            return guestEntities;
         }
     }
 

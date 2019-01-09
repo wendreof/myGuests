@@ -18,6 +18,7 @@ public class GuestFormActivity extends AppCompatActivity implements View.OnClick
 
     private ViewHolder mViewHolder = new ViewHolder();
     private GuestBusiness mGuestBusiness;
+    private int mGuestId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,7 +33,10 @@ public class GuestFormActivity extends AppCompatActivity implements View.OnClick
         this.mViewHolder.mButtonSave        = this.findViewById( R.id.button_save );
 
         this.mGuestBusiness = new GuestBusiness( this );
+
         this.setListeners();
+
+        this.loadDataFromActivity();
     }
 
     @Override
@@ -85,6 +89,31 @@ public class GuestFormActivity extends AppCompatActivity implements View.OnClick
 
         //Finish the Activity
         finish();
+    }
+
+    private void loadDataFromActivity()
+    {
+        Bundle bundle = getIntent().getExtras();
+        if ( bundle != null)
+        {
+            mGuestId = bundle.getInt( GuestConstants.BundleConstants.GUEST_ID );
+
+            GuestEntities guestEntities = this.mGuestBusiness.load( this.mGuestId );
+
+            this.mViewHolder.mEditName.setText( guestEntities.getName() );
+            if ( guestEntities.getConfirmed() == GuestConstants.CONFIRMATION.PRESENT)
+            {
+                this.mViewHolder.mRadioPresent.setChecked( true );
+            }
+            else if ( guestEntities.getConfirmed() == GuestConstants.CONFIRMATION.ABSENT)
+            {
+                this.mViewHolder.mRadioAbsent.setChecked( true );
+            }
+            else
+            {
+                this.mViewHolder.mRadioNotConfirmed.setChecked( true );
+            }
+        }
     }
 
     private boolean validateSave()
