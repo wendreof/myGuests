@@ -42,6 +42,7 @@ public class GuestRepository
 
             ContentValues contentValues = new ContentValues();
             contentValues.put( DatabaseContants.GUEST.COLUMNS.NAME, guestEntities.getName() );
+            contentValues.put( DatabaseContants.GUEST.COLUMNS.DOCUMENT, guestEntities.getDocument() );
             contentValues.put( DatabaseContants.GUEST.COLUMNS.PRESENCE, guestEntities.getConfirmed() );
 
             sqLiteDatabase.insert( DatabaseContants.GUEST.TABLE_NAME, null, contentValues );
@@ -63,6 +64,7 @@ public class GuestRepository
 
             ContentValues contentValues = new ContentValues();
             contentValues.put( DatabaseContants.GUEST.COLUMNS.NAME, guestEntities.getName() );
+            contentValues.put( DatabaseContants.GUEST.COLUMNS.DOCUMENT, guestEntities.getDocument() );
             contentValues.put( DatabaseContants.GUEST.COLUMNS.PRESENCE, guestEntities.getConfirmed() );
 
             String selection = DatabaseContants.GUEST.COLUMNS.ID + " = ? ";
@@ -113,6 +115,7 @@ public class GuestRepository
             String[] projection = {
                     DatabaseContants.GUEST.COLUMNS.ID,
                     DatabaseContants.GUEST.COLUMNS.NAME,
+                    DatabaseContants.GUEST.COLUMNS.DOCUMENT,
                     DatabaseContants.GUEST.COLUMNS.PRESENCE,
             };
 
@@ -137,6 +140,11 @@ public class GuestRepository
                 // NAME
                 guestEntities.setName( cursor.getString(
                         cursor.getColumnIndex( DatabaseContants.GUEST.COLUMNS.NAME ) ) );
+
+                // DOCUMENT
+                guestEntities.setDocument( cursor.getString(
+                        cursor.getColumnIndex( DatabaseContants.GUEST.COLUMNS.DOCUMENT ) ) );
+
                 //PRESENCE
                 guestEntities.setConfirmed( cursor.getInt(
                         cursor.getColumnIndex( DatabaseContants.GUEST.COLUMNS.PRESENCE ) ) );

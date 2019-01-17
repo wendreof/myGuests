@@ -5,6 +5,15 @@ public class GuestEntities
     private int id;
     private String name;
     private int confirmed;
+    private String document;
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
 
     public int getId() {
         return id;
