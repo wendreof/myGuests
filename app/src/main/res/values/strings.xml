@@ -22,4 +22,5 @@
     <string name="error_saving_guest">Ops! Erro ao salvar</string>
     <string name="remocao_convidado">Remoção de Convidado</string>
     <string name="total">Total</string>
+    <string name="guest_removed">Convidado removido com sucesso!</string>
 </resources>
