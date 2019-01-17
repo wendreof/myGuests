@@ -4,8 +4,8 @@ public class GuestEntities
 {
     private int id;
     private String name;
-    private int confirmed;
     private String document;
+    private int confirmed;
 
     public String getDocument() {
         return document;

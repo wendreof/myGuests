@@ -63,7 +63,7 @@ public class GuestFormActivity extends AppCompatActivity implements View.OnClick
         }
 
         GuestEntities guestEntities = new GuestEntities();
-        guestEntities.setName( this.mViewHolder.mEditName.getText().toString() );
+        guestEntities.setName(     this.mViewHolder.mEditName.getText().toString() );
         guestEntities.setDocument( this.mViewHolder.mEditDocument.getText().toString() );
 
         if ( this.mViewHolder.mRadioNotConfirmed.isChecked() )

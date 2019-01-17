@@ -12,12 +12,11 @@ public class  GuestDatabaseHelper extends SQLiteOpenHelper
     private static final String DATABASE_NAME = "MeusConvidados.db";
 
     private static final String SQL_CREATE_TABLE_GUEST =
-
         "create table " + DatabaseContants.GUEST.TABLE_NAME + " ("
         + DatabaseContants.GUEST.COLUMNS.ID       + " integer primary key autoincrement, "
-        + DatabaseContants.GUEST.COLUMNS.NAME     + "text,"
-        + DatabaseContants.GUEST.COLUMNS.DOCUMENT + "text null"
-        + DatabaseContants.GUEST.COLUMNS.PRESENCE + "integer);";
+        + DatabaseContants.GUEST.COLUMNS.NAME     + " text, "
+        + DatabaseContants.GUEST.COLUMNS.DOCUMENT + " text, "
+        + DatabaseContants.GUEST.COLUMNS.PRESENCE + " integer);";
 
     private static final String DROP_TABLE_GUEST = "DROP TABLE IF EXISTS" + DatabaseContants.GUEST.TABLE_NAME;
 
