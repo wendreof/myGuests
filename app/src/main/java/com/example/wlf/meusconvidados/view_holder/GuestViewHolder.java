@@ -47,7 +47,7 @@ public class GuestViewHolder extends RecyclerView.ViewHolder
                 new AlertDialog.Builder( mContext)
                         .setTitle( R.string.remocao_convidado)
                         .setMessage( "Deseja remover o convidado ?" )
-                        .setIcon( R.drawable.ic_menu_camera)
+                        .setIcon( R.drawable.remove)
                         .setPositiveButton("Sim", new DialogInterface.OnClickListener()
                         {
                             @Override
