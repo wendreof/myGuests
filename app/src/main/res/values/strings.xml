@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MeusConvidados</string>
+    <string name="app_name">Gerenciamento de Convidados</string>
     <string name="navigation_drawer_open">Abrir Menu</string>
     <string name="navigation_drawer_close">Fechar Menu</string>
     <string name="nav_header_title">Android Studio</string>
