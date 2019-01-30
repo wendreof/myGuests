@@ -16,16 +16,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.wlf.meusconvidados.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener
 {
     private ViewHolder mViewHolder = new ViewHolder();
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate( Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         this.mViewHolder.mFloatAddGuest = this.findViewById( R.id.float_add_guest );
 
@@ -118,14 +124,45 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_all_guests)
         {
             fragmentClass = AllInvitedFragment.class;
+
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "all_invited_id");
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "all_invited");
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "menu_click");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
+            bundle = new Bundle();
+            bundle.putString("menu_content", "all_invited");
+            mFirebaseAnalytics.logEvent("menu_content_custom", bundle);
+
         }
         else if (id == R.id.nav_present)
         {
             fragmentClass = PresentFragment.class;
+
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "present_id");
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "present");
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "menu_click");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
+            bundle = new Bundle();
+            bundle.putString("menu_content", "present");
+            mFirebaseAnalytics.logEvent("menu_content_custom", bundle);
         }
         else if (id == R.id.nav_absent)
         {
             fragmentClass = AbsentFragment.class;
+
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "absent_id");
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "absent");
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "menu_click");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
+            bundle = new Bundle();
+            bundle.putString("menu_content", "absent");
+            mFirebaseAnalytics.logEvent("menu_content_custom", bundle);
         }
 
         try
